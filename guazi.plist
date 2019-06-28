@@ -12,7 +12,7 @@
                         <string>software-package</string>
                         <key>url</key>
                         <!--<string>https://tools.dy555008.cn/guazi-app-ios/app.ipa</string>-->
-                        <string>https://github.com/adu555008/guaziApp/blob/master/app.ipa</string>
+                        <string>https://github.com/adu555008/guaziApp/blob/master/app.ipa?raw=true</string>
                     </dict>
                     <dict>
                         <key>kind</key>
@@ -20,7 +20,7 @@
                         <key>needs-shine</key>
                         <true/>
                         <key>url</key>
-                        <string>https://github.com/adu555008/guaziApp/blob/master/icon.png</string>
+                        <string>https://github.com/adu555008/guaziApp/blob/master/icon.png?raw=true</string>
                     </dict>
                     <dict>
                         <key>kind</key>
@@ -28,7 +28,7 @@
                         <key>needs-shine</key>
                         <true/>
                         <key>url</key>
-                        <string>https://github.com/adu555008/guaziApp/blob/master/icon.png</string>
+                        <string>https://github.com/adu555008/guaziApp/blob/master/icon.png?raw=true</string>
                     </dict>
                 </array>
                 <key>metadata</key>
