@@ -27,7 +27,7 @@ dy.log('hello world');
 
 #### 常用方法列表
 | 函数名 | 参数说明 | 返回值说明 | 介绍 |
-| ---- | ---- | ---- | ---- | ---- | ---- |
+| ---- | ---- | ---- | ---- |
 | friendTime(dateTime=now Date()) | 有效时间 | 返回友好时间提示（刚刚，1分钟前，1小时前，3个月前等） | 友好时间转换 |
 | toDecimal(num,len=2) | 数字或能有效转换为数字的字符串,保留小数位数 | 保留为小数的字符串 | 精准保留小数点后len位，处理计算带来的误差，如0.1+0.2=0.30000000000000004 |
 | judgeType(type) | any | 返回:无效,null,undefined,function,array,object,number,string,boolean | 精准判断数据类型 |
