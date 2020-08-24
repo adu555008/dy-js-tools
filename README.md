@@ -37,7 +37,7 @@ dy.log('hello world');
 | createUuid() |  | 返回 uuid | 生成uuid |
 | getUrlParams(url=location.href) | url地址 | 返回url参数，object | 获取url参数 |
 | pwStrength(pwd) | 6-20位密码字符串 | 返回密码强度，（强，中，弱，非常弱） | 获取密码强度 |
-| codeHideMiddle(str,startStr=3, endStr=4, star='*') | any | 返回隐藏中间后的当前字符串：135*****008 | 字符隐藏，转* |
+| codeHideMiddle(str,startStr=3, endStr=4, star='*') | string,保留开始位数,保留结束位数,替换内容 | 返回隐藏中间后的当前字符串：135*****008 | 字符隐藏，转* |
 
 #### 验证方法列表
 参数统一为：val=要验证的内容，正则flag: g|i|gi，默认为: g
