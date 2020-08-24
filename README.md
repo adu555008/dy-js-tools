@@ -45,5 +45,19 @@ dy.log('hello world');
 
 | 函数名 | 介绍 |
 | ---- | ---- |
-| idCardStrictValidate | 1 |
-| idCardStrictValidate | 1 |
+| idCardStrictValidate | 身份证校验（严格模式）,该函数返回: {res:false,msg:'该身份证1-2位不合法'}，object |
+| idCardValidate | 身份证校验（正则模式） |
+| emailValidate | 邮箱校验 |
+| ipv4Validate | ipv4校验 |
+| color16Validate | 16进制颜色校验 |
+| phoneValidate | 手机号校验 |
+| fixedPhoneValidate | 座机号校验 |
+| unifiedSocialCreditCodeValidate | 统一社会信用代码校验 |
+| cnValidate | 中文校验 |
+| moneyValidate | 金额校验（最多两位小数） |
+| carNumValidate | 车牌号校验 |
+| newCarNumValidate | 新能源车牌号校验 |
+| carNewCarNumValidate | 车牌号(新能源+非新能源)校验 |
+| bankCodeValidate | 银行卡号（16或19位） |
+| qqValidate | qq号校验 |
+| vxValidate | 微信号校验 |
