@@ -37,11 +37,11 @@ dy.log('hello world');
 | createUuid() |  | 返回 uuid | 生成uuid |
 | getUrlParams(url=location.href) | url地址 | 返回url参数，object | 获取url参数 |
 | pwStrength(pwd) | 6-20位密码字符串 | 返回密码强度，（强，中，弱，非常弱） | 获取密码强度 |
-| codeHideMiddle(str,startStr=3, endStr=4, star='*') | string,保留开始位数,保留结束位数,替换内容 | 返回隐藏中间后的当前字符串：135*****008 | 字符隐藏，转* |
+| codeHideMiddle(str,startStr=3, endStr=4, star='*') | any | 返回隐藏中间后的当前字符串：135*****008 | 字符隐藏，转* |
 
 #### 验证方法列表
-参数统一为：val=要验证的内容，正则flag: g|i|gi，默认为: g
-如果不传参数，则为获取当前函数的正则
+###### 参数统一为：val=要验证的内容，正则flag: g|i|gi，默认为: g
+###### 如果不传参数，则为获取当前函数的正则
 
 | 函数名 | 介绍 |
 | ---- | ---- |
@@ -49,6 +49,7 @@ dy.log('hello world');
 | idCardValidate | 身份证校验（正则模式） |
 | emailValidate | 邮箱校验 |
 | ipv4Validate | ipv4校验 |
+| ipv6Validate | ipv6校验 |
 | color16Validate | 16进制颜色校验 |
 | phoneValidate | 手机号校验 |
 | fixedPhoneValidate | 座机号校验 |
@@ -61,3 +62,4 @@ dy.log('hello world');
 | bankCodeValidate | 银行卡号（16或19位） |
 | qqValidate | qq号校验 |
 | vxValidate | 微信号校验 |
+````````
