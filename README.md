@@ -29,14 +29,20 @@ dy.log('hello world');
 | 函数名 | 参数说明 | 返回值说明 | 介绍 |
 | ---- | ---- | ---- | ---- |
 | friendTime(dateTime=now Date()) | 有效时间 | 返回友好时间提示（刚刚，1分钟前，1小时前，3个月前等） | 友好时间转换 |
+| removeArrVal(arr, val) | 数组，要删除的值 | 无返回值 | 删除数组指定值 |
+| removeStrVal(str, val, flag = 'g') | 原始字符串，正则 | 无返回值 | 删除字符串指定内容，可以写正则 |
 | toDecimal(num,len=2) | 数字或能有效转换为数字的字符串,保留小数位数 | 保留为小数的字符串 | 精准保留小数点后len位，处理计算带来的误差，如0.1+0.2=0.30000000000000004 |
+| debounce(fn, wait = 700) | 要执行的函数，间隔时间 | 无返回值 | 防抖,用户在一定时间内持续操作，用户操作完成后执行，如窗口改变，滚动条滚动 |
+| throttle(fn, delay = 700) | 要执行的函数，间隔时间 | 无返回值 | 节流,用户在一定时间内持续操作，每间隔一定时间执行一次，如ajax请求 |
 | judgeType(type) | any | 返回:无效,null,undefined,function,array,object,number,string,boolean | 精准判断数据类型 |
-| moneyToChinese(val) | 数字或能有效转换为数字的字符串 | 返回中文大写（取绝对值） | 金额转中文大写 |
 | dateToFormat(date=now Date(),format='YYYY-MM-DD hh:mm:ss') | 有效时间，有效时间格式： YYYY-MM-DD hh:mm:ss | 返回对应时间格式 | 格式化时间 |
 | getIdcardMsg(idcard) | 有效有效身份证 | 返回 {age:'',birthday:'',sex:''}，object | 获取身份证信息（年龄，生日，性别） |
 | createUuid() |  | 返回 uuid | 生成uuid |
 | getUrlParams(url=location.href) | url地址 | 返回url参数，object | 获取url参数 |
 | pwStrength(pwd) | 6-20位密码字符串 | 返回密码强度，（强，中，弱，非常弱） | 获取密码强度 |
+| arrFindObj(arrObj, key, val) | obj要找的对象，对象在数组里的索引 | 返回 {obj,index} | 在数组对象里面获取某个属性值等于val的对象 |
+| moneyToChinese(str) | 要转的金额 | 返回 大写的中文 | 金额转大写 |
+| blobExport(flow, fileName, fileType = 'xls') | 文件流，文件名称，文件类型 | 返回 {obj,index} | 下载文件流 |
 | codeHideMiddle(str,startStr=3, endStr=4, star='*') | any | 返回隐藏中间后的当前字符串：135*****008 | 字符隐藏，转* |
 
 #### 验证方法列表
