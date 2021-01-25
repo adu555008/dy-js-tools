@@ -14,16 +14,19 @@ npm install --save-dev 'babel-polyfill'
 ```
 import 'babel-polyfill';
 ```
-
 ###### 在vue.config.js里面加入
 ```
 ...
 module.exports = {
     ...,
-    <div style="color:red;">transpileDependencies: ['dy-js-tools'], // 默认babel-loader忽略node_modules，这里可增加例外的依赖包名</div>
+```
+<div style="color:red;">transpileDependencies: ['dy-js-tools'], // 默认babel-loader忽略node_modules，这里可增加例外的依赖包名</div>
+
+```
     ...
 ｝
 ```
+
 
 
 ##### 方式一：全局引用
