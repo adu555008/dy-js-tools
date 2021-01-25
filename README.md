@@ -56,7 +56,7 @@ dy.log('hello world');
 | toDecimal(num,len=2) | 数字或能有效转换为数字的字符串,保留小数位数 | 保留为小数的字符串 | 精准保留小数点后len位，处理计算带来的误差，如0.1+0.2=0.30000000000000004 |
 | debounce(fn, wait = 700) | 要执行的函数，间隔时间 | 无返回值 | 防抖,用户在一定时间内持续操作，用户操作完成后执行，如窗口改变，滚动条滚动 |
 | throttle(fn, delay = 700) | 要执行的函数，间隔时间 | 无返回值 | 节流,用户在一定时间内持续操作，每间隔一定时间执行一次，如ajax请求 |
-| judgeType(type) | any | 返回:无效,null,undefined,function,array,object,number,string,boolean | 精准判断数据类型 |
+| judgeType(type) | any | 返回:无效, null, undefined, function, array, object, number, string, boolean | 精准判断数据类型 |
 | dateToFormat(date=now Date(),format='YYYY-MM-DD hh:mm:ss') | 有效时间，有效时间格式： YYYY-MM-DD hh:mm:ss | 返回对应时间格式 | 格式化时间 |
 | getIdcardMsg(idcard) | 有效有效身份证 | 返回 {age:'',birthday:'',sex:''}，object | 获取身份证信息（年龄，生日，性别） |
 | createUuid() |  | 返回 uuid | 生成uuid |
