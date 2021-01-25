@@ -5,6 +5,27 @@
 npm install --save dy-js-tools
 ```
 
+##### 兼容性
+```
+npm install --save-dev 'babel-polyfill'
+```
+
+###### 在main.js里面引入
+```
+import 'babel-polyfill';
+```
+
+###### 在vue.config.js里面加入
+```
+...
+module.exports = {
+    ...,
+    <div style="color:red;">transpileDependencies: ['dy-js-tools'], // 默认babel-loader忽略node_modules，这里可增加例外的依赖包名</div>
+    ...
+｝
+```
+
+
 ##### 方式一：全局引用
 ###### 在main.js里面引入
 ```
@@ -44,6 +65,7 @@ dy.log('hello world');
 | moneyToChinese(str) | 要转的金额 | 返回 大写的中文 | 金额转大写 |
 | blobExport(flow, fileName, fileType = 'xls') | 文件流，文件名称，文件类型 | 返回 {obj,index} | 下载文件流 |
 | codeHideMiddle(str,startStr=3, endStr=4, star='*') | any | 返回隐藏中间后的当前字符串：135*****008 | 字符隐藏，转* |
+| toWinMsg({title, option, clickFn, closeFn, errorFn, deniedFn, defaultFn}) | {通知标题，配置，...回调函数} | 返回是否发送成功{n: null,code: -1,msg: ''} | 向windows发送通知 |
 
 #### 验证方法列表
 ###### 参数统一为：val=要验证的内容，正则flag: g|i|gi，默认为: g
