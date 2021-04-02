@@ -76,7 +76,7 @@ export function idCardStrictValidate(val, flag = 'g') {
             };
         }
         let idCardCounty = parseInt(val.substr(4, 2));
-        if (!((idCardCounty >= 1 && idCardCounty <= 20) || (idCardCounty >= 21 && idCardCounty <= 80) || (idCardCounty >= 81 && idCardCounty <= 99))) {
+        if (!((idCardCounty >= 0 && idCardCounty <= 20) || (idCardCounty >= 21 && idCardCounty <= 80) || (idCardCounty >= 81 && idCardCounty <= 99))) {
             return {
                 res: false,
                 msg: '该身份证5-6位不合法'

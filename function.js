@@ -36,6 +36,24 @@ export function friendTime(dateTime) {
     return result;
 }
 
+export function removeArrVal(arr, val) {
+    /**
+     * 删除数组指定值
+     * */
+    let index = arr.indexOf(val);
+    if (index > -1) {
+        arr.splice(index, 1);
+    }
+}
+
+export function removeStrVal(str, val, flag = 'g') {
+    /**
+     * 删除字符串指定值
+     * */
+    let reg = new RegExp(val, flag);
+    str.replace(reg, val);
+}
+
 export function toDecimal(num, len = 2) {
     /**
      * 精准保留小数
@@ -56,6 +74,59 @@ export function toDecimal(num, len = 2) {
         s += '0';
     }
     return s;
+}
+
+export function safeStr(xss) {
+    /**
+     * xss过滤
+     */
+    if (xss) {
+        let translateMap = {
+            '<': '&lt;',
+            '>': '&gt;',
+            '\"': '&quot;',
+            '\'': '&#39;',
+            '\%': '&#37;',
+            '\#': '&#35;'
+        };
+        xss = '' + xss;
+        xss = xss.replace(/[<>"'%#]/g, (str)=> {
+            for (let key in translateMap) {
+                if (key === str) {
+                    return translateMap[key];
+                }
+            }
+            return key;
+        });
+    }
+    return xss;
+}
+
+export function debounce(fn, wait = 700) {
+    /**
+     * 防抖,用户在一定时间内持续操作，用户操作完成后执行，如窗口改变，滚动条滚动
+     */
+    let timeout = null;
+    return () => {
+        if (timeout !== null) clearTimeout(timeout);
+        timeout = setTimeout(fn, wait);
+    }
+}
+
+export function throttle(fn, delay = 700) {
+    /**
+     * 节流,用户在一定时间内持续操作，每间隔一定时间执行一次，如ajax请求
+     */
+    let prev = Date.now();
+    return () => {
+        let context = this;
+        let args = arguments;
+        let now = Date.now();
+        if (now - prev >= delay) {
+            fn.apply(context, args);
+            prev = Date.now();
+        }
+    }
 }
 
 export function judgeType(type) {
@@ -89,36 +160,6 @@ export function judgeType(type) {
     if (type instanceof Boolean || typeof type == 'boolean') {
         return 'boolean'
     }
-}
-
-export function moneyToChinese(val) {
-    /**
-     * 金额转中文大写
-     * */
-    let num = Math.abs(val); // 取绝对值
-    if (isNaN(num)) {
-        return NaN;
-    }
-    let strOutput = "",
-        strUnit = '仟佰拾亿仟佰拾万仟佰拾元角分';
-    num += "00";
-    let intPos = num.indexOf('.');
-    if (intPos >= 0) {
-        num = num.substring(0, intPos) + num.substr(intPos + 1, 2);
-    }
-    strUnit = strUnit.substr(strUnit.length - num.length);
-    for (let i = 0; i < num.length; i++) {
-        strOutput += '零壹贰叁肆伍陆柒捌玖'
-            .substr(num.substr(i, 1), 1) + strUnit.substr(i, 1);
-    }
-    return strOutput
-        .replace(/零角零分$/, '整')
-        .replace(/零[仟佰拾]/g, '零')
-        .replace(/零{2,}/g, '零')
-        .replace(/零([亿|万])/g, '$1')
-        .replace(/零+元/, '元')
-        .replace(/亿零{0,3}万/, '亿')
-        .replace(/^元/, "零元");
 }
 
 export function dateToFormat(date, format = 'YYYY-MM-DD hh:mm:ss') {
@@ -235,6 +276,88 @@ export function pwStrength(pwd) {
 
 }
 
+export function arrFindObj(arrObj, key, val) {
+    /**
+     * 在数组对象里面获取某个属性值等于val的对象
+     * @return {obj,index}
+     * */
+
+    let obj = {
+        obj: null,
+        index: -1
+    };
+    for (let i = 0; i < arrObj.length; i++) {
+        if (arrObj[i][key] === val) {
+            obj = {
+                obj: arrObj[i],
+                index: i
+            };
+            break;
+        }
+    }
+    return obj
+}
+
+export function moneyToChinese(str) {
+    /**
+     * 金额转大写
+     *
+     * */
+    let num = parseFloat(str);
+    let d = '';
+    if (num < 0) {
+        num = Math.abs(num);
+        d = '负';
+    }
+    let strOutput = "";
+    let strUnit = '仟佰拾亿仟佰拾万仟佰拾元角分';
+    num += "00";
+    let intPos = num.indexOf('.');
+    if (intPos >= 0) {
+        num = num.substring(0, intPos) + num.substr(intPos + 1, 2);
+    }
+    strUnit = strUnit.substr(strUnit.length - num.length);
+    for (let i = 0; i < num.length; i++) {
+        strOutput += '零壹贰叁肆伍陆柒捌玖'.substr(num.substr(i, 1), 1) + strUnit.substr(i, 1);
+    }
+    return d + strOutput
+        .replace(/零角零分$/, '整')
+        .replace(/零[仟佰拾]/g, '零')
+        .replace(/零{2,}/g, '零')
+        .replace(/零([亿|万])/g, '$1')
+        .replace(/零+元/, '元')
+        .replace(/亿零{0,3}万/, '亿')
+        .replace(/^元/, "零元")
+}
+
+export function blobExport(flow, fileName, fileType = 'xls') {
+    /**
+     * 下载文件流
+     *
+     * */
+
+    const typeObj = {
+        doc: {suffix: '.doc', type: 'application/msword'},
+        docx: {suffix: '.docx', type: 'application/msword'},
+        xls: {suffix: '.xls', type: 'application/vnd.ms-excel'},
+        xlsx: {suffix: '.xlsx', type: 'application/vnd.ms-excel'},
+    };
+
+    let elink = document.createElement("a");
+    elink.download = fileName + typeObj[fileType].suffix;
+    elink.style.display = "none";
+    let blob = new Blob([flow], {type: typeObj[fileType].type});
+    // 兼容ie的下载
+    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, elink.download);
+    } else {
+        elink.href = URL.createObjectURL(blob);
+        document.body.appendChild(elink);
+        elink.click();
+        document.body.removeChild(elink);
+    }
+}
+
 export function codeHideMiddle(str, startStr = 3, endStr = 4, star = '*') {
     /**
      * 字符隐藏，转*
@@ -254,22 +377,73 @@ export function codeHideMiddle(str, startStr = 3, endStr = 4, star = '*') {
     return str.replace(reg, '$1' + x + '$2');
 }
 
+export function toWinMsg({title, option, clickFn, closeFn, errorFn, deniedFn, defaultFn}) {
+    /**
+     * 向windows发送通知
+     *
+     */
+    let obj = {
+        n: null,
+        code: -1,
+        msg: ''
+    };
+    return new Promise((resolve, reject) => {
+        Notification.requestPermission().then((e) => {
+            if (e === 'granted') {
+                // 用户点击了允许
+                let n = new Notification(title, {
+                    dir: option.dir || 'auto',
+                    lang: option.lang || 'zh-CN',
+                    body: option.body,
+                    tag: option.tag,
+                    icon: option.icon
+                });
+                obj.n = n;
+                n.onshow = () => {
+                    obj.code = 1;
+                    obj.msg = 'show';
+                    resolve(obj);
+                };
+                n.onclick = () => {
+                    obj.code = 2;
+                    obj.msg = 'click';
+                    clickFn && clickFn(obj);
+                };
+                n.onclose = () => {
+                    obj.code = 3;
+                    obj.msg = 'close';
+                    closeFn && closeFn(obj);
+                };
+                n.onerror = (e) => {
+                    obj.msg = e;
+                    errorFn && errorFn(obj);
+                };
+            } else if (e === 'denied') {
+                // 用户点击了拒绝
+                obj.code = -2;
+                obj.msg = 'denied';
+                deniedFn && deniedFn(obj);
+            } else {
+                // 用户没有做决定
+                obj.code = 0;
+                obj.msg = 'default';
+                defaultFn && defaultFn(obj);
+            }
+        })
+    })
+}
 
-export function fullWindowScreen(){
+export function fullWindowScreen() {
     let docElm = document.documentElement;
-    if(docElm.requestFullscreen) {
+    if (docElm.requestFullscreen) {
         docElm.requestFullscreen();
-    }
-    else if(docElm.mozRequestFullScreen) {
+    } else if (docElm.mozRequestFullScreen) {
         docElm.mozRequestFullScreen();
-    }
-    else if(docElm.webkitRequestFullScreen) {
+    } else if (docElm.webkitRequestFullScreen) {
         docElm.webkitRequestFullScreen();
-    }
-    else if(elem.msRequestFullscreen) {
+    } else if (elem.msRequestFullscreen) {
         elem.msRequestFullscreen();
-    }
-    else if (typeof window.ActiveXObject !== "undefined") {
+    } else if (typeof window.ActiveXObject !== "undefined") {
         let wsSript = new ActiveXObject("WScript.Shell");
         if (wsSript != null) {
             wsSript.SendKeys("{F11}");
@@ -277,21 +451,17 @@ export function fullWindowScreen(){
     }
 }
 
-export function exitWindowScreen(){
+export function exitWindowScreen() {
     let docElm = document;
-    if(docElm.exitFullscreen) {
+    if (docElm.exitFullscreen) {
         docElm.exitFullscreen();
-    }
-    else if(docElm.mozCancelFullScreen) {
+    } else if (docElm.mozCancelFullScreen) {
         docElm.mozCancelFullScreen();
-    }
-    else if(docElm.webkitCancelFullScreen) {
+    } else if (docElm.webkitCancelFullScreen) {
         docElm.webkitCancelFullScreen();
-    }
-    else if(docElm.msExitFullscreen) {
+    } else if (docElm.msExitFullscreen) {
         docElm.msExitFullscreen();
-    }
-    else if (typeof window.ActiveXObject !== "undefined") {
+    } else if (typeof window.ActiveXObject !== "undefined") {
         let wsSript = new ActiveXObject("WScript.Shell");
         if (wsSript != null) {
             wsSript.SendKeys("{F11}");
