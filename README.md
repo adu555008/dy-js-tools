@@ -2,18 +2,10 @@
 
 ##### 安装
 ```
-npm install --save dy-js-tools
+npm i dy-js-tools -S
 ```
 
 ##### 兼容性
-```
-npm install --save-dev 'babel-polyfill'
-```
-
-###### 在main.js里面引入
-```
-import 'babel-polyfill';
-```
 
 ###### 在vue.config.js里面加入
 ```
@@ -24,7 +16,6 @@ module.exports = {
     ...
 ｝
 ```
-
 
 
 ##### 方式一：全局引用
@@ -44,7 +35,7 @@ this.$dy.log('hello world');
 // 引入
 import dy from 'dy-js-tools';
 // 页面调用
-dy.log('hello world');
+vue.use(dy);
 ```
 
 #### 常用方法列表
